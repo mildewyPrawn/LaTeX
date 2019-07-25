@@ -1,0 +1,379 @@
+%Estructuras Discretas 2017-1
+%Profesor: Favio E. Miranda Perea
+%Ayudante: Victor Zamora Gutierrez
+%Laboratorio: Fernando A. Galicia Mendoza
+%Panorama general de Latex
+
+%Para compilar latex, instalar: texlive-full y después localizarse en el
+%directorio de tu archivo latex y dar la orden: pdflatex
+%Por ejemplo para este documento: pdflatex IntroLatex.tex
+%En caso de error ingresar: q
+
+%Un lugar para encontrar símbolos matematicos: http://detexify.kirelabs.org/
+
+\documentclass[spanish,12pt,letterpaper]{article}
+
+\usepackage[spanish]{babel} %Poner algunas palabras reservadas en español
+\usepackage[utf8]{inputenc} %Para aceptar acentos y ñ
+\usepackage{authblk} %Poner instituto en la portada
+%Paquetes para símbolos matematicos
+\usepackage{amsmath}
+\usepackage{amssymb}
+%Paquete para algoritmos
+\usepackage[]{algorithm2e}
+%Paquete para direcciones web
+\usepackage{url}
+
+%Paquete para codigo Haskell
+\usepackage{listings}
+\lstloadlanguages{Haskell} %Cargamos la sintaxis de Haskell
+\lstnewenvironment{code}%Definimos el ambiente para el codigo Haskell
+                  {\lstset{}%
+                    \csname lst@SetFirstLabel\endcsname}
+                  {\csname lst@SaveFirstLabel\endcsname}
+                  \lstset{
+                    basicstyle=\small\ttfamily,
+                    flexiblecolumns=false,
+                    basewidth={0.5em,0.45em},
+                    literate={+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1 {=}{{$=$}}1
+                    {>}{{$>$}}1 {<}{{$<$}}1 {\\}{{$\lambda$}}1
+                    {\\\\}{{\char`\\\char`\\}}1
+                    {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}2
+                    {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2 
+                    {\ .}{{$\circ$}}2 {\ .\ }{{$\circ$}}2
+                    {>>}{{>>}}2 {>>=}{{>>=}}2
+                    {|}{{$\mid$}}1               
+                  }
+
+                  %Entorno teorema
+                  \usepackage{theorem}
+                  \theoremstyle{break}
+                  %Definir aspectos matemáticos 
+                  \newtheorem{defi}{Definición}
+                  \newtheorem{teo}{Teorema}
+                  \newtheorem{ejem}{Ejemplo}
+
+                  %Aspectos de la portada
+                  \title{Estructuras Discretas 2017-1\\Panorama general de \LaTeX}
+                  \author{Favio E. Miranda Perea\\Victor Zamora Gutiérrez\\Fernando A. Galicia Mendoza}
+                  \affil{Facultad de ciencias, UNAM}
+                  \date{Viernes, 30 de septiembre de 2016}
+
+                  \begin{document}
+
+                  %Orden para crear la portada
+                  \maketitle
+
+                  \section{Aspectos básicos}
+                  Para generar un \texttt{PDF} ingresar en terminal: \verb!pdflatex NombreArchivo.tex!\\
+                  Un sitio para buscar símbolos: \url{http://detexify.kirelabs.org/}\\
+
+                  Para generar portada: \verb!\maketitle!\\
+                  Para salto de línea: \verb!\\!\\
+                  Para \textbf{negritas}: \verb!\textbf{texto}!\\
+                  Para \textit{itlaicas}: \verb!\textit{texto}!\\
+                  Para \texttt{máquina de escribir}: \verb!\texttt{texto}!\\
+
+                  \section{Secciones, capítulos, etc}
+
+                  En caso de los ambientes \verb!article! o bien \verb!report!, pueden definir:
+                  \begin{description}
+                  \item[Sección] Utilizar comando \verb!\section{Nombre_sección}!
+                  \item[Subsección] Utilizar comando \verb!\subsection{Nombre_subsección}!
+                  \end{description}
+
+                  En el caso del ambiente \verb!book!, pueden definir capítulos:\\
+                  Utilizar el comando \verb!\chapter{Nombre_capítulo}!
+
+                  \section{Listas enumeradas, no enumeradas y descriptivas}
+                  Para crear una lista enumerada utilizar el ambiente \texttt{itemize}.\\
+                  Por ejemplo la siguiente lista:
+                  \begin{enumerate}
+                  \item H
+                  \item O
+                  \item L
+                  \item A
+                  \end{enumerate}
+                  Se escribe en latex como:
+\begin{verbatim}
+  \begin{enumerate}
+  \item H
+  \item O
+  \item L
+  \item A
+  \end{enumerate}
+\end{verbatim}
+Para listas no enumeradas:
+\begin{itemize}
+\item H
+\item O
+\item L
+\item A
+\end{itemize}
+Se escribe en latex como:
+\begin{verbatim}
+  \begin{itemize}
+  \item H
+  \item O
+  \item L
+  \item A
+  \end{itemize}
+\end{verbatim}
+El ambiente \texttt{enumerate} predefinido tiene un problema a poner listas con incisos,
+para arreglar esto, importar el paquete \texttt{enumerate}.\\
+Para listas descriptivas:
+\begin{description}
+\item[descripcion1] H
+\item[descripcion2] O
+\item[descripcion3] L
+\item[descripcion4] A
+\end{description}
+Se escribe en latex como:
+\begin{verbatim}
+  \begin{description}
+  \item[descripcion1] H
+  \item[descripcion2] O
+  \item[descripcion3] L
+  \item[descripcion4] A
+  \end{description}
+\end{verbatim}
+
+\section{Ambiente matemático}
+El ambiente matemático se puede poner de dos formas:
+\begin{itemize}
+\item \verb!$expresionMatematica$!
+\item \verb!\[expresionMatematica\]!
+\end{itemize}
+La diferencia es que la primera se puede poner sobre la misma línea que el ambiente de texto y
+la segunda hace un salto de línea y lo centra.\\
+Por ejemplo:\\
+$ax^2+bx+c \to$ \verb!$ax^2+bx+c$!
+\[ax^2+bx+c \to\] \verb!\[ax^2+bx+c\]!
+
+\section{Símbolos lógicos}
+Para utilizar símbolos lógicos deben ponerlos en ambiente matemático, a continuación se muestra una lista con los posibles símbolos:
+\begin{itemize}
+\item Conectivos:
+  \begin{itemize}
+  \item Negación ($\lnot$): \verb!\lnot!
+  \item Conjunción ($\land$): \verb!\land!
+  \item Disyunción ($\lor$): \verb!\lor!
+  \item Implicación ($\to$): \verb!\to!
+  \item Doble condicional ($\leftrightarrow$): \verb!\leftrightarrow!
+  \item Disyunción exclusiva ($\not\equiv$): \verb!\not\equiv!
+  \item Conjunción negada ($\uparrow$): \verb!\uparrow!
+  \item Disyunción negada ($\downarrow$): \verb!\downarrow!
+  \end{itemize}
+\item Cuantificadores:
+  \begin{itemize}
+  \item Universal ($\forall$): \verb!\forall!
+  \item Existencial ($\exists$): \verb!\exists!
+  \end{itemize}
+\item Universo de discurso ($\mathcal{U}$): \verb!\mathcal{U}!
+\item Lenguaje ($\mathcal{L}$): \verb!\mathcal{L}!
+\item Derivación semántica ($\vDash$): \verb!\vDash!
+\item Derivación sintactica ($\vdash$): \verb!\vdash!
+\end{itemize}
+
+\section{Relaciones}
+Para utilizar símbolos de relación deben ponerlos en ambiente matemático, a continuación se muestra una lista con las relaciones usuales:
+\begin{itemize}
+\item Relación de igualdad ($=$): \verb!=!
+\item Relación menor estricta ($<$): \verb!<!
+\item Relación menor o igual ($\leq$): \verb!\leq!
+\item Relación mayor estricta ($>$): \verb!>!
+\item Relación mayor o igual ($\geq$): \verb!\geq!
+\end{itemize}
+
+\section{Definiciones, teoremas y demás}
+Para definir un teorema debemos definir un nuevo estilo de teorema, a través de la orden \verb!\newtheorem{etiqueta}{Nombre}[Numeracion]!,
+donde \texttt{etiqueta} es donde se creará el ambiente, \texttt{Nombre} es el nombre de la etiqueta (defi a Definición, por ejemplo) y \texttt{Numeración}
+es la opción para indicarle a \LaTeX que la numeración de los teoremas sea por sección, capítulo, etc.\\
+Por ejemplo:\\
+\verb!\newtheorem{defi}{Definición}[section]! indica que el ambiente \texttt{defi}, se llamará \texttt{Definición} y será enumerado de acuerdo a la sección.\\
+Para crear una definición creamos un ambiente con \texttt{defi} y podemos poner entre corchetes un nombre propio a la definición.\\
+Por ejemplo:\\
+\begin{defi}[Longitud de lista]
+  Sea $\ell$ una lista de tipo $a$, definimos la longitud de $\ell$ como el total de elementos que contiene la lista, es decir,
+  si $\ell = [x_1,\dots,x_n]$, entonces la longitud de $\ell$ es $n$.
+\end{defi}
+Dentro del archivo \texttt{.tex} debe ir:
+\begin{verbatim}
+  \begin{defi}[Longitud de lista]
+    Sea $\ell$ una lista de tipo $a$, definimos la longitud de $\ell$ 
+    como el total de elementos que contiene la lista, es decir,
+    si $\ell = [x_1,\dots,x_n]$, entonces la longitud de $\ell$ es $n$.
+  \end{defi}
+\end{verbatim}
+
+\section{Arreglos y sistemas de ecuaciones}
+Código \LaTeX:\\
+\begin{verbatim}
+  \[
+  \begin{array}{|l|cr}
+    left1 & center1 & right1\\
+    \hline
+    d & e & f
+  \end{array}
+  \]
+\end{verbatim}
+Resultado:\\
+\[
+\begin{array}{|l|cr}
+  left1 & center1 & right1\\
+  \hline
+  d & e & f
+\end{array}
+\]
+
+Código \LaTeX:\\
+\begin{verbatim}
+  \[
+  \begin{array}{lcl}
+    z & = & a \\
+    & = & a \\
+    f(x,y,z) & = & x + y + z
+  \end{array} 
+  \]
+\end{verbatim}
+Resultado:\\
+\[
+\begin{array}{lcl}
+  z & = & a \\
+  & = & a \\
+  f(x,y,z) & = & x + y + z
+\end{array} 
+\]
+
+Código \LaTeX:\\
+\begin{verbatim}
+  \begin{align*}
+    z & = & a \\
+    & = & a \\
+    f(x,y,z) & = & x + y + z
+  \end{align*}
+\end{verbatim}
+Resultado:\\
+\begin{align*}
+  z & = & a \\
+  & = & a \\
+  f(x,y,z) & = & x + y + z
+\end{align*}
+
+Código \LaTeX:\\
+\begin{verbatim}
+  \begin{align}
+    z & = & a \\
+    & = & a \\
+    f(x,y,z) & = & x + y + z
+  \end{align}
+\end{verbatim}
+Resultado:\\
+\begin{align}
+  z & = & a \\
+  & = & a \\
+  f(x,y,z) & = & x + y + z
+\end{align}
+
+\newpage %Comando para que haga un salto a la siguiente pagina
+
+\section{Algoritmos}
+
+Código \LaTeX:
+\begin{verbatim}
+  \begin{algorithm}[H]
+    \KwData{Entradas}
+    \KwResult{Salida del algoritmo}
+    print "Hello world''\;
+    \While{guardia}{
+      instruccion\;
+      \eIf{guardia}{
+        instruccion true\;
+      }{
+        instruccion else\;
+      }
+    }
+    \caption{Como escribir algoritmos}
+  \end{algorithm}
+\end{verbatim}
+
+Resultado:\\
+\begin{algorithm}[H]
+  \KwData{Entradas}
+  \KwResult{Salida del algoritmo}
+  print "Hello world''\;
+  \While{guardia}{
+    instruccion\;
+    \eIf{guardia}{
+      instruccion true\;
+    }{
+      instruccion else\;
+    }
+  }
+  \caption{Como escribir algoritmos}
+\end{algorithm}
+
+\section{Código}
+
+Código \LaTeX:\\
+\begin{verbatim}
+  \begin{code}
+    --Poner codigo Haskell
+    
+    module PostFix where
+
+    --Palabra reservada postfix
+    data PF = POSTFIX deriving(Show,Eq)
+
+    --Tipo que define un comando postfix
+    data Comando = L Int | EXEC | ADD | SUB | MUL | DIV | REM | Eq | Gt | Lt | SEL | NGET | POP | SWAP | SEC [Comando]  deriving(Show,Eq)
+
+    --La pila es una lista de comandos
+    type Pila = [Comando]
+
+    --Un programa es una tupla la cual tiene la palabra reservada postfix,
+    --un numero natural y una lista de comandos
+    type Programa = (PF,Int,[Comando])
+
+    {-
+      - Verificacion de la sintaxis de un programa
+      -}
+
+    --Funcion que determina que un porgrama este sintacticamente bien formado
+    bienFormado :: Programa -> Pila -> Bool
+    bienFormado (p,n,l) s = (prPF (p,n,l)) && (n == length s) 
+  \end{code}
+\end{verbatim}
+
+Resultado:\\
+\begin{code}
+  --Poner codigo Haskell
+  
+  module PostFix where
+
+  --Palabra reservada postfix
+  data PF = POSTFIX deriving(Show,Eq)
+
+  --Tipo que define un comando postfix
+  data Comando = L Int | EXEC | ADD | SUB | MUL | DIV | REM | Eq | Gt | Lt | SEL | NGET | POP | SWAP | SEC [Comando]  deriving(Show,Eq)
+
+  --La pila es una lista de comandos
+  type Pila = [Comando]
+
+  --Un programa es una tupla la cual tiene la palabra reservada postfix,
+  --un numero natural y una lista de comandos
+  type Programa = (PF,Int,[Comando])
+
+  {-
+    - Verificacion de la sintaxis de un programa
+    -}
+
+  --Funcion que determina que un porgrama este sintacticamente bien formado
+  bienFormado :: Programa -> Pila -> Bool
+  bienFormado (p,n,l) s = (prPF (p,n,l)) && (n == length s) 
+\end{code}
+
+\textbf{Observación:} Aunque parezcan, observen que el ambiente \verb!code! evita que salga del documento y lo pone
+en un estilo completamente parecido a un editor de texto.
+
+                  \end{document}

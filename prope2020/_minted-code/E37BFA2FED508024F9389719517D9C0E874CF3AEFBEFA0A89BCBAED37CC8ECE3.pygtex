@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{c+c1}{// Método que imprime algo con un arreglo}
+  \PYG{k+kd}{public} \PYG{k+kd}{static} \PYG{k+kt}{void} \PYG{n+nf}{imprime}\PYG{o}{(}\PYG{k+kt}{int}\PYG{o}{[]} \PYG{n}{sec}\PYG{o}{)\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;}
+    \PYG{n}{String} \PYG{n}{s} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}[\PYGZdq{}} \PYG{o}{+} \PYG{n}{sec}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{o}{;}
+      \PYG{k}{while}\PYG{o}{(++}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{sec}\PYG{o}{.}\PYG{n+na}{length}\PYG{o}{)\PYGZob{}}
+        \PYG{n}{s} \PYG{o}{+=} \PYG{n}{sec}\PYG{o}{[}\PYG{n}{i}\PYG{o}{]} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{o}{;}
+      \PYG{o}{\PYGZcb{}}
+      \PYG{n}{System}\PYG{o}{.}\PYG{n+na}{out}\PYG{o}{.}\PYG{n+na}{println}\PYG{o}{(}\PYG{n}{s} \PYG{o}{+} \PYG{n}{sec}\PYG{o}{[\PYGZhy{}\PYGZhy{}}\PYG{n}{i}\PYG{o}{]}  \PYG{o}{+}\PYG{l+s}{\PYGZdq{}]\PYGZdq{}}\PYG{o}{);}
+  \PYG{o}{\PYGZcb{}}
+\end{Verbatim}

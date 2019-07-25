@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{c+c1}{\PYGZsh{} Filtro de mica morada}
+  \PYG{k}{def} \PYG{n+nf}{filtroMicaMorada}\PYG{p}{(}\PYG{n}{imagen}\PYG{p}{,} \PYG{n}{nueva}\PYG{p}{):}
+    \PYG{n}{rgb} \PYG{o}{=} \PYG{n}{imagen}\PYG{o}{.}\PYG{n}{convert}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}RGB\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{pixels} \PYG{o}{=} \PYG{n}{nueva}\PYG{o}{.}\PYG{n}{load}\PYG{p}{()}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{imagen}\PYG{o}{.}\PYG{n}{size}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]):}
+        \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{imagen}\PYG{o}{.}\PYG{n}{size}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]):}
+            \PYG{n}{r}\PYG{p}{,}\PYG{n}{g}\PYG{p}{,}\PYG{n}{b} \PYG{o}{=} \PYG{n}{rgb}\PYG{o}{.}\PYG{n}{getpixel}\PYG{p}{((}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{))}
+            \PYG{n}{pixels}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{b}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{r}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{nueva}
+\end{Verbatim}

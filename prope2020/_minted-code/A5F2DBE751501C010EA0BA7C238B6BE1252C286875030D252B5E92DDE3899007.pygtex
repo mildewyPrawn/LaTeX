@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * direccion}
+\PYG{c+cm}{ * Imprime la direccion actual}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{void} \PYG{n+nf}{direccion}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{char} \PYG{n}{cwd}\PYG{p}{[}\PYG{l+m+mi}{1024}\PYG{p}{];}
+  \PYG{c+c1}{//getcwd determina el nombre de la ruta del directorio de trabajo}
+  \PYG{c+c1}{// y lo almacena en el búfer.}
+  \PYG{n}{getcwd}\PYG{p}{(}\PYG{n}{cwd}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{cwd}\PYG{p}{));}
+  \PYG{c+c1}{//getenv busca la cadena de entorno a la que apunta el nombre y devuelve el valor asociado a la cadena.}
+  \PYG{k+kt}{char}\PYG{o}{*} \PYG{n}{username} \PYG{o}{=} \PYG{n}{getenv}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}USER\PYGZdq{}}\PYG{p}{);}
+  \PYG{c+c1}{//Se imprime en este caso kevin@maquina \PYGZti{} \PYGZbs{}home\PYGZbs{}kevind\PYGZbs{}Documentos\PYGZbs{}Tarea3}
+  \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}s@maquina \PYGZti{} \PYGZpc{}s\PYGZdq{}}\PYG{p}{,} \PYG{n}{username}\PYG{p}{,} \PYG{n}{cwd}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
