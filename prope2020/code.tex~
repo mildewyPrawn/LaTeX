@@ -1,0 +1,5 @@
+\documentclass[spanish,12pt,letterpaper]{article}
+
+\usepackage[spanish]{babel} %Poner algunas palabras reservadas en español
+\usepackage[utf8]{inputenc} %Para aceptar acentos y ñ
+\usepackage{authblk} %Poner instituto en la portada

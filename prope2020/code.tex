@@ -1,0 +1,90 @@
+\documentclass[spanish,12pt,letterpaper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+
+\usepackage{minted} % Código bonito
+
+\title{Propedéutico 2020 \\ \LaTeX}
+\author{Victor Zamora Gutiérrez \\ Karla Socorro García Alcántara\\
+  Galeana Araujo Emiliano}
+\affil{Facultad de ciencias, UNAM}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+minted es un paquete para poner código y que se vea bonito, con colores...\\
+
+\section{Instalación}
+\begin{itemize}
+\item arch linux $\rightarrow$ pacman -S minted
+\item ubuntu $\rightarrow$
+  \begin{itemize}
+  \item sudo apt-get install texlive-latex-extra
+  \item sudo apt-get install python-pygments
+  \end{itemize}
+\end{itemize}
+
+\section{Compilar}
+Ahora compilamos de la siguiente manera:\\
+%% \verb!pdflatex -synctex=1 -interaction=nonstopmode --shell-escape %.tex!
+\verb!pdflatex -shell-escape archivo.tex!
+
+\section{Ejemplos}
+\subsection{Python}
+\begin{minted}[breaklines]{Python}
+  # Filtro de mica morada
+  def filtroMicaMorada(imagen, nueva):
+    rgb = imagen.convert('RGB')
+    pixels = nueva.load()
+    for i in range(imagen.size[0]):
+        for j in range(imagen.size[1]):
+            r,g,b = rgb.getpixel((i,j))
+            pixels[i,j] = (b,0,r)
+    return nueva
+\end{minted}
+
+\subsection{C}
+\begin{minted}[breaklines]{C}
+/**
+ * direccion
+ * Imprime la direccion actual
+ */
+void direccion() {
+  char cwd[1024];
+  //getcwd determina el nombre de la ruta del directorio de trabajo
+  // y lo almacena en el búfer.
+  getcwd(cwd, sizeof(cwd));
+  //getenv busca la cadena de entorno a la que apunta el nombre y devuelve el valor asociado a la cadena.
+  char* username = getenv("USER");
+  //Se imprime en este caso kevin@maquina ~ \home\kevind\Documentos\Tarea3
+  printf("%s@maquina ~ %s", username, cwd);
+}
+\end{minted}
+
+\subsection{Java}
+\begin{minted}[breaklines]{Java}
+  // Método que imprime algo con un arreglo
+  public static void imprime(int[] sec){
+    int i = 0;
+    String s = "[" + sec[i] + ", ";
+      while(++i < sec.length){
+        s += sec[i] + ", ";
+      }
+      System.out.println(s + sec[--i]  +"]");
+  }
+\end{minted}
+
+
+\subsection{Haskell}
+
+\begin{minted}[breaklines]{Haskell}
+-- | sumaGauss. Funcion que representa la formula de Gauss.
+sumaGauss :: Int -> Int
+sumaGauss x = (x*(x+1)) `div` 2
+\end{minted}
+
+\end{document}
