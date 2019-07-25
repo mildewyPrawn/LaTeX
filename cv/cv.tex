@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+% Package for modifing how sections are viewed
+\usepackage{titlesec}
+% Package provides control over the typesetting of some commands
+\usepackage{titling}
+% Change things about margens
+\usepackage[margin=2.75cm]{geometry}
+
+% \titleformat
+% {\Comando de estructura}[Tipo]
+% {Formato}
+% {Etiqueta}
+% {Separación}
+% {Código anterior}
+% {Código posterior}
+
+\titleformat{\section}
+{\huge\bfseries\lowercase}
+{}
+{0em}
+{}[\titlerule]
+{}
+
+\titleformat{\subsection}
+{\bfseries\Large}
+{\hspace{-.75cm}$\bullet$}
+{0em}
+{}
+{}
+
+\titleformat{\subsubsection}[runin]
+{\bfseries}
+{}
+{0em}
+{}[---]
+{}
+
+% \titlespacing{\comando de estructura}
+% {} identación izquierda
+% {} espacio anterior
+% {} espacio posterior
+% {} identación derecha
+\titlespacing{\subsubsection}{0pt}{5pt}{5pt}
+
+\renewcommand{\maketitle}{
+  \begin{center}
+    {\huge\bfseries
+      \theauthor}
+    \vspace{.25em}\\
+    %galeanaara@ciencias.unam.mx
+\end{center}
+  }  
+
+\newcommand{\UNAM}{Universidad Nacional Aut\'onoma de M\'exico}
+\newcommand{\CCH}{Colegio de Ciencias y Humanidades, Plantel Sur}
+\newcommand{\FC}{Facultad de Ciencias}
+\newcommand{\DGTIC}{Direcci\'on General de C\'omputo y Tecnolog\'ias de la
+  Informaci\'on}
+\newcommand{\entry}[4]{
+  
+  \begin{minipage}[t]{.15\textwidth}
+    \hfill \textsc{#1}
+  \end{minipage}
+  \hfill\vline\hfill
+  \begin{minipage}[t]{.80\textwidth}
+    #2
+    \textit{#3}
+    \footnotesize{#4}
+  \end{minipage}\\\vspace{.25cm}
+}
+
+\newcommand{\newsubsection}[1]{
+  \textbf{#1}
+}
+
+\begin{document}
+
+\title{CV}
+\author{Emiliano Galeana Araujo}
+\date{\today}
+
+\maketitle
+
+\section{Informaci\'on B\'asica}
+
+\subsubsection{email} galeanaara@ciencias.unam.mx
+
+\subsubsection{tel\'efono} 5531407750
+
+\subsubsection{gitHub} mildewyPrawn
+
+\section{Formaci\'on Acad\'emica}
+
+\subsection{Con grado}
+\entry{2014--2016}
+{}
+{\CCH}
+{}
+
+\entry{2016--A la fecha}
+{Licenciatura en Ciencias de la Computación.}
+{\FC, \UNAM}
+{}
+
+\subsection{Sin grado}
+\entry{2017}
+{Curso Sistemas Operativo Tipo UNIX}
+{\DGTIC en la \UNAM}
+{}
+
+\entry{2018}
+{Curso Introducci\'on al Diseño de Bases de Datos Relacionales}
+{\DGTIC, \UNAM}
+{}
+
+
+\section{Experiencia Profesional}
+
+\subsection{\UNAM}
+
+\newsubsection{Enseñanza}
+\entry{semestre 2019-4}
+{git, HTML, LaTeX}
+{\FC}
+{Ayud\'e a impartir el curso proped\'eutico para alumnos de nuevo ingreso a la
+  carrera de Ciencias de la Computación.}
+
+\entry{semestre 2019-1}
+{java}
+{\FC}
+{D\'i un curso a alumnos de primer semestre para ayudarlos a aprender java}
+
+\newsubsection{Programa de Becas}
+\entry{semestre 2019-1}
+{UNAM-PAPIME102117}
+{\FC}
+{Disen\'e un solucionario del curso de Lenguajes de Programaci\'on impartido por
+el Dr. Favio E. Miranda Perea}
+
+\section{Habilidades}
+
+\subsection{Workflow}
+emacs, git, linux(Ubuntu, Fedora, Debian, Arch), \LaTeX.
+
+\subsection{Lenguages}
+
+\entry{He trabajado en}
+{java, haskell, python, C, C++, shell, HTML, \LaTeX, SQL}
+{}{}
+
+\entry{Con conocimientos en}
+{Go, Lisp, markdown, R, Mathlab, perl, pascal, prolog, javascript, assembly}
+{}{}
+
+\section{Habilidades Generales}
+
+\newsubsection{Idiomas}
+
+\entry{Español}{Como lengua materna.}{}{}
+\entry{Inglés}{Estudiando desde los 4 años.}{}{}
+\entry{Francés}{Estudi\'e 2 años en \CCH.}{}{}
+
+\section{Servicio y Otros}
+
+\subsection{Servicio Social}
+
+\newsubsection{Centro Geo}
+\entry{2019}{API}{En equipo creamos un API de consulta de datos geográficos.}{}
+\entry{2019}{Optimización}{En equipo optimizamos algunos programas que se
+  tenían.}{}
+\entry{2019}{Deep learning}{En equipo hicimos entrenamos un modelo para con
+  im\'agenes satelitales identifique el tipo de geometr\'a de los techos en la
+  ciudad.}{}
+
+\subsection{Otros}
+\entry{semestre 2018-2}{Final de la Olimpiada Internacional de Lógica.}{}{}
+
+
+\end{document}
