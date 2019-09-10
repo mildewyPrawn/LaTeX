@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+% Package for modifing how sections are viewed
+\usepackage{titlesec}
+% Package provides control over the typesetting of some commands
+\usepackage{titling}
+% Change things about margens
+%% \usepackage[margin=2.75cm]{geometry}
+\usepackage{geometry}
+ \geometry{
+      a4paper,
+      total={170mm,257mm},
+      left=20mm,
+      top=20mm,
+    }
+
+% \titleformat
+% {\Comando de estructura}[Tipo]
+% {Formato}
+% {Etiqueta}
+% {Separación}
+% {Código anterior}
+% {Código posterior}
+
+\titleformat{\section}
+{\large\bfseries\uppercase}
+{}
+{0em}
+{}[\titlerule]
+{}
+
+\titleformat{\subsubsection}[runin]
+{\bfseries}
+{}
+{}
+{}[---]
+{}
+
+\renewcommand{\maketitle}{
+  \begin{center}
+    {\huge\bfseries
+      \theauthor}
+    \vspace{.25em}\\
+    %galeanaara@ciencias.unam.mx
+\end{center}
+}
+
+\newcommand{\UNAM}{Universidad Nacional Aut\'onoma de M\'exico.}
+\newcommand{\FC}{Facultad de Ciencias.}
+\newcommand{\entry}[4]{
+  
+  \begin{minipage}[t]{.15\textwidth}
+    \hfill \textsc{#1}
+  \end{minipage}
+  \hfill\vline\hfill
+  \begin{minipage}[t]{.80\textwidth}
+    #2
+    \textit{#3}
+    \footnotesize{#4}
+  \end{minipage}\\
+}
+\newcommand{\gitHub}
+{\includegraphics[scale=.05]{../imagenes/github.png}}
+
+\begin{document}
+
+\title{CV}
+\author{Emiliano Galeana Araujo}
+\date{\today}
+
+\maketitle
+
+\subsubsection{email} galeanaara@ciencias.unam.mx
+
+\subsubsection{mobile number} +52 55 31407750
+
+\subsubsection{\gitHub} mildewyPrawn
+%% \subsubsection{gitHub profile} mildewyPrawn
+
+\section{Education}
+\entry{2016--2021}
+      {Computer Science}
+      {\UNAM, \FC}
+      {8.73}
+
+\entry{2019--2023}
+      {Mathematics}
+      {\UNAM, \FC}
+      {9.93}
+
+\section{Work Experience}
+\entry{Summer 2020}
+      {\UNAM,\FC}
+      {Preparatory course, assistant.}
+      {Help to impart a preparatory course for the new entrey students of CS.}
+
+\entry{Fall 2019/2020}
+      {}
+      {Course, teacher.}
+      {Design and impart by my own a java course for freshman students.}
+
+\entry{Fall 2019}
+      {UNAM-PAPIME102117, \FC}
+      {Scholarship program.}
+      {Design and write a solutionary book of the Programming Language course of
+        Dr. Favio E. Miranda Perea}
+
+\section{Major School Projects}
+\entry{Winter 2019}{Configuration emacs}{Personal proyect, trying to get better
+  my emacs configuration.}{}
+\entry{Fall 2019 }{Convex Hull/Sweep Line}{School proyect, some homeworks about
+  the implementation of the algorithms in java.}{}
+\entry{Fall 2018}{Programming Language}{School proyect, implemented a basic
+  programming language in Haskell}{}
+\entry{Spring 2018}{Data Structures}{School proyect, implemented some of the best
+  known data structures.}{}
+\entry{Spring 2018}{Steganography}{School proyect, wich cout 33\% of the final
+  grade}{}
+
+\section{Technical Skills}
+\entry{3 years}{Java/Haskell}{}{}
+\entry{1 years}{C/C++/Python}{}{}
+\entry{6 months or less}{Go/emacsLisp}{}{}
+
+\section{Workflow}
+emacs, git, linux(Ubuntu, Fedora, Debian, Arch), \LaTeX.
+
+\section{Awards and Leadership}
+\entry{2019}{Final of the national CTF(Capture The Flag).}{}{}
+\entry{2018}{Final of the international olympic of logic.}{}{}
+
+
+\end{document}
