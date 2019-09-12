@@ -2,6 +2,7 @@
 \usepackage[spanish]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{graphicx}
+\usepackage{ragged2e}
 % Package for modifing how sections are viewed
 \usepackage{titlesec}
 % Package provides control over the typesetting of some commands
@@ -16,14 +17,6 @@
       top=20mm,
     }
 
-% \titleformat
-% {\Comando de estructura}[Tipo]
-% {Formato}
-% {Etiqueta}
-% {Separación}
-% {Código anterior}
-% {Código posterior}
-
 \titleformat{\section}
 {\large\bfseries\uppercase}
 {}
@@ -31,40 +24,87 @@
 {}[\titlerule]
 {}
 
+\titleformat{\subsection}
+{\bfseries\Large}
+{\hspace{-.75cm}$\bullet$}
+{0em}
+{}
+{}
+
 \titleformat{\subsubsection}[runin]
 {\bfseries}
 {}
-{}
+{0em}
 {}[---]
 {}
+
+\titlespacing{\subsubsection}
+             {0pt}
+             {5pt}             
+             {5pt}
 
 \renewcommand{\maketitle}{
   \begin{center}
     {\huge\bfseries
       \theauthor}
     \vspace{.25em}\\
-    %galeanaara@ciencias.unam.mx
 \end{center}
 }
 
-\newcommand{\UNAM}{Universidad Nacional Aut\'onoma de M\'exico.}
-\newcommand{\FC}{Facultad de Ciencias.}
-\newcommand{\entry}[4]{
-  
+\newcommand{\UNAM}{Universidad Nacional Aut\'onoma de M\'exico, }
+\newcommand{\FC}{Facultad de Ciencias}
+\newcommand{\entry}[4]{  
   \begin{minipage}[t]{.15\textwidth}
-    \hfill \textsc{#1}
+    \hfill \textsc{#1}\\
   \end{minipage}
   \hfill\vline\hfill
   \begin{minipage}[t]{.80\textwidth}
-    #2
-    \textit{#3}
+    #2\\
+    \textit{#3}\\
     \footnotesize{#4}
-  \end{minipage}\\
+  \end{minipage}
 }
-\newcommand{\gitHub}
-{\includegraphics[scale=.05]{../imagenes/github.png}}
+
+\newcommand{\SchoolProjects}[3]{
+  \begin{minipage}[t]{.15\textwidth}
+    \hfill \textsc{#1}\\
+  \end{minipage}
+  \hfill\vline\hfill
+  \begin{minipage}[t]{.80\textwidth}
+    #2\\
+    \textit{#3}
+  \end{minipage}
+}
+
+\newcommand{\TSkills}[3]{
+  \begin{minipage}[t]{.15\textwidth}
+    \hfill \textsc{#1}\\
+  \end{minipage}
+  \hfill\vline\hfill
+  \begin{minipage}[t]{.80\textwidth}
+    #2\\
+    \textit{#3}
+  \end{minipage}
+}
+
+\newcommand{\gh}
+           {
+             \includegraphics[scale=.05]{../imagenes/github.png}
+           }
+
+\newcommand{\email}
+           {
+             \includegraphics[scale=.07]{../imagenes/gmail.png}
+           }
+
+\newcommand{\phone}
+           {
+             \includegraphics[scale=.03]{../imagenes/phone.jpg}
+           }
 
 \begin{document}
+\pagenumbering{gobble}
+
 
 \title{CV}
 \author{Emiliano Galeana Araujo}
@@ -72,64 +112,107 @@
 
 \maketitle
 
-\subsubsection{email} galeanaara@ciencias.unam.mx
+\begin{minipage}[t]{.5\linewidth}
+  \begin{tabular}{r}
+    \hspace{2.4em}\email : galeanaara@ciencias.unam.mx
+  \end{tabular}
+\end{minipage}
 
-\subsubsection{mobile number} +52 55 31407750
+\begin{minipage}[t]{.5\linewidth}
+  \begin{tabular}{r}
+    \hspace{1.3em}\phone : +52 55 31407750
+  \end{tabular}
+\end{minipage}
 
-\subsubsection{\gitHub} mildewyPrawn
-%% \subsubsection{gitHub profile} mildewyPrawn
+\begin{minipage}[t]{.5\linewidth}
+  \begin{tabular}{r}
+    \gh{} : mildewyPrawn
+  \end{tabular}
+\end{minipage}
 
 \section{Education}
 \entry{2016--2021}
-      {Computer Science}
-      {\UNAM, \FC}
-      {8.73}
+      {Bachelor of Science in Computer Science}
+      {\UNAM\FC}
+      {GPA: 8.73}
 
 \entry{2019--2023}
-      {Mathematics}
-      {\UNAM, \FC}
-      {9.93}
+      {Bachelor of Science in Mathematics}
+      {\UNAM\FC}
+      {GPA: 9.33}
 
 \section{Work Experience}
 \entry{Summer 2020}
-      {\UNAM,\FC}
-      {Preparatory course, assistant.}
-      {Help to impart a preparatory course for the new entrey students of CS.}
+      {\UNAM\FC}
+      {Introductory course, assistant.}
+      {Help to impart a preparatory course for the new students of CS.}
 
 \entry{Fall 2019/2020}
-      {}
-      {Course, teacher.}
-      {Design and impart by my own a java course for freshman students.}
-
+      {\UNAM}
+      {Volunteer.}
+      {Design, impart and prepare a basic javac course for a group
+        of twenty new students of CS}
+      
 \entry{Fall 2019}
       {UNAM-PAPIME102117, \FC}
       {Scholarship program.}
-      {Design and write a solutionary book of the Programming Language course of
-        Dr. Favio E. Miranda Perea}
+      {Design and write a solutions book of the Programming Language course
+        called \texttt{Solucionario del curso de lenguajes de programación2019-1}
+        by Dr. Favio E. Miranda Perea}
+
 
 \section{Major School Projects}
-\entry{Winter 2019}{Configuration emacs}{Personal proyect, trying to get better
-  my emacs configuration.}{}
-\entry{Fall 2019 }{Convex Hull/Sweep Line}{School proyect, some homeworks about
-  the implementation of the algorithms in java.}{}
-\entry{Fall 2018}{Programming Language}{School proyect, implemented a basic
-  programming language in Haskell}{}
-\entry{Spring 2018}{Data Structures}{School proyect, implemented some of the best
-  known data structures.}{}
-\entry{Spring 2018}{Steganography}{School proyect, wich cout 33\% of the final
-  grade}{}
+\SchoolProjects{Summer 2019}
+               {Configuration emacs}
+               {My own emacs configuration.}
+
+\SchoolProjects{Spring 2019}
+               {Guess the movie with emojis.}
+               {Implement the game in console using haskell.}
+               
+\SchoolProjects{Fall 2019}      
+               {Convex Hull/Sweep Line}
+               {School project, implementation of the algorithms using java.}
+               
+\SchoolProjects{Fall 2018}      
+               {Programming Language}
+               {School project, implemented a basic programming language using
+                 Haskell as host language.}
+               
+\SchoolProjects{Spring 2018}      
+               {Data Structures}
+               {School project, implemented some of the best known data
+                 structures using java.}
+               
+\SchoolProjects{Spring 2018}      
+               {Steganography}
+               {School project, Program in java that encrypts an image using LSB
+                 (Less Significant Bit)}
 
 \section{Technical Skills}
-\entry{3 years}{Java/Haskell}{}{}
-\entry{1 years}{C/C++/Python}{}{}
-\entry{6 months or less}{Go/emacsLisp}{}{}
+               
+\TSkills{3 years}
+        {Java/Haskell}
+        {}
+
+\TSkills{1 years}
+        {C/C++/Python}
+        {}
+
+\TSkills{6 months}
+        {Go/emacsLisp}
+        {}
 
 \section{Workflow}
 emacs, git, linux(Ubuntu, Fedora, Debian, Arch), \LaTeX.
 
 \section{Awards and Leadership}
-\entry{2019}{Final of the national CTF(Capture The Flag).}{}{}
-\entry{2018}{Final of the international olympic of logic.}{}{}
+\TSkills{2019}
+        {Final of the national CTF(Capture The Flag).}
+        {}
 
+\TSkills{2018}
+        {Honorable mention at the international olympic of logic.}
+        {}
 
 \end{document}
