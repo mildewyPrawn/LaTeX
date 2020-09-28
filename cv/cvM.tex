@@ -1,8 +1,11 @@
 \documentclass{article}
 \usepackage[spanish]{babel}
 \usepackage[utf8x]{inputenc}
+\usepackage{comment} %% coment section
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{ragged2e}
+\usepackage{titlesec} %% space between sections
 % Package for modifing how sections are viewed
 \usepackage{titlesec}
 % Package provides control over the typesetting of some commands
@@ -102,6 +105,9 @@
              \includegraphics[scale=.03]{../imagenes/phone.jpg}
            }
 
+%% https://tex.stackexchange.com/questions/101116/how-to-reduce-the-space-before-after-section-and-subsection
+\titlespacing*{\section}{0pt}{*1.5}{*1.5} 
+           
 \begin{document}
 \pagenumbering{gobble}
 
@@ -112,6 +118,14 @@
 
 \maketitle
 
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ c  c  c }
+    \email : galeanaara@ciencias.unam.mx & \phone : +52 55 31407750 & \gh{} : mildewyPrawn\\
+  \end{tabular}
+\end{table}
+
+\begin{comment}
 \begin{minipage}[t]{.5\linewidth}
   \begin{tabular}{r}
     \hspace{2.4em}\email : galeanaara@ciencias.unam.mx
@@ -130,30 +144,37 @@
   \end{tabular}
 \end{minipage}
 
+\end{comment}
+
 \section{Education}
-\entry{2016--2021}
+\entry{2016--2021-May}
       {Bachelor of Science in Computer Science}
       {\UNAM\FC}
-      {GPA: 8.73}
+      {GPA: 9.02}
 
-\entry{2019--2023}
+\entry{2019--2023-May}
       {Bachelor of Science in Mathematics}
       {\UNAM\FC}
-      {GPA: 9.33}
+      {GPA: 9.50}
 
 \section{Work Experience}
-\entry{Summer 2020}
+\entry{2020}
+      {\UNAM\FC}
+      {Laboratory assistant for courses of the Computer Sciences program Courses:}
+      {Computer Architecture, Programming Languages, Discrete Mathematics}
+
+\entry{2019 - present}
       {\UNAM\FC}
       {Introductory course, assistant.}
       {Help to impart a preparatory course for the new students of CS.}
 
-\entry{Fall 2019/2020}
+\entry{Fall 2018/2019}
       {\UNAM}
       {Volunteer.}
       {Design, impart and prepare a basic javac course for a group
         of twenty new students of CS}
       
-\entry{Fall 2019}
+\entry{Fall 2018}
       {UNAM-PAPIME102117, \FC}
       {Scholarship program.}
       {Design and write a solutions book of the Programming Language course
@@ -162,6 +183,14 @@
 
 
 \section{Major School Projects}
+\SchoolProjects{Summer 2020}
+               {Music Parser}
+               {Implemented in Haskell a kind of music parser from notes to sound.}
+      
+\SchoolProjects{Spring 2020}
+               {Heuristic optimization for TSP}
+               {Implemented in go the simulated annealing heuristic for TSP.}
+      
 \SchoolProjects{Summer 2019}
                {Configuration emacs}
                {My own emacs configuration.}
@@ -184,18 +213,18 @@
                {School project, implemented some of the best known data
                  structures using java.}
                
-\SchoolProjects{Spring 2018}      
+\SchoolProjects{Spring 2017}
                {Steganography}
                {School project, Program in java that encrypts an image using LSB
                  (Less Significant Bit)}
 
 \section{Technical Skills}
                
-\TSkills{3 years}
+\TSkills{4 years}
         {Java/Haskell}
         {}
 
-\TSkills{1 years}
+\TSkills{2 years}
         {C/C++/Python}
         {}
 
@@ -207,6 +236,10 @@
 emacs, git, linux(Ubuntu, Fedora, Debian, Arch), \LaTeX.
 
 \section{Awards and Leadership}
+\TSkills{2019}
+        {Best Project Idea for IBM challenge}
+        {Winner of IBM challenge at UNAMxHacks}
+
 \TSkills{2019}
         {Final of the national CTF(Capture The Flag).}
         {}
