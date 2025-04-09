@@ -1,181 +1,484 @@
-\documentclass{article}
-\usepackage[spanish]{babel}
-\usepackage[utf8x]{inputenc}
-% Package for modifing how sections are viewed
+% xelatex
+\documentclass[letterpaper,
+  %twocolumn,
+  10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{metalogo}
+\usepackage{xifthen}
+\usepackage[colorlinks=true,urlcolor=Blue]{hyperref}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{titlesec}
-% Package provides control over the typesetting of some commands
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=10mm,
+  top=10mm,
+  right=10mm,
+  bottom=10mm,
+}
 \usepackage{titling}
-% Change things about margens
-\usepackage[margin=2.75cm]{geometry}
+\newfontfamily\cfont{Noto Sans CJK SC}
+\usepackage{libertine}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{setspace}
 
-% \titleformat
-% {\Comando de estructura}[Tipo]
-% {Formato}
-% {Etiqueta}
-% {Separación}
-% {Código anterior}
-% {Código posterior}
+\pagestyle{empty}
 
-\titleformat{\section}
-{\huge\bfseries\lowercase}
-{}
-{0em}
-{}[\titlerule]
-{}
+% Macro to allow image links in XeLaTeX
+\ifxetex
+\usepackage{letltxmacro}
+\setlength{\XeTeXLinkMargin}{1pt}
+\LetLtxMacro\SavedIncludeGraphics\includegraphics
+\def\includegraphics#1#{% #1 catches optional stuff (star/opt. arg.)
+  \IncludeGraphicsAux{#1}%
+}%
+\newcommand*{\IncludeGraphicsAux}[2]{%
+  \XeTeXLinkBox{%
+    \SavedIncludeGraphics#1{#2}%
+  }%
+}%
+\fi
+%%%%%%%
 
-\titleformat{\subsection}
-{\bfseries\Large}
-{\hspace{-.75cm}$\bullet$}
-{0em}
-{}
-{}
+% Bold contents of a link
+\let\oldhref\href
+\renewcommand{\href}[3][blue]{\oldhref{#2}{\color{#1}{#3}}}
 
-\titleformat{\subsubsection}[runin]
-{\bfseries}
-{}
-{0em}
-{}[---]
-{}
+% Your name goes here:
+\author{Emiliano Galeana Araujo}
 
-% \titlespacing{\comando de estructura}
-% {} identación izquierda
-% {} espacio anterior
-% {} espacio posterior
-% {} identación derecha
-\titlespacing{\subsubsection}{0pt}{5pt}{5pt}
+% Update date set to last compile:
+\date{\today}
 
+% Custom title command.
 \renewcommand{\maketitle}{
-  \begin{center}
-    {\huge\bfseries
-      \theauthor}
-    \vspace{.25em}\\
-    %galeanaara@ciencias.unam.mx
-\end{center}
+  %% \begin{minipage}[t]{.5\textwidth}
+  \par{\centering{\huge  \bfseries{\theauthor}}\par}
+  \begin{table}[h]
+    \centering
+    \begin{tabular}{ c c c c }
+      +52 5518474280 & \href{mailto:galeanaara@ciencias.unam.mx}{galeanaara@ciencias.unam.mx} & \href{https://github.com/mildewyprawn}{github.com/mildewyPrawn} & \href{https://www.linkedin.com/in/egaleanaa/}{linkedin.com/in/egaleanaa}\\
+    \end{tabular}
+  \end{table}
+  %% \end{minipage}
 }
 
-\newcommand{\UNAM}{Universidad Nacional Aut\'onoma de M\'exico}
-\newcommand{\CCH}{Colegio de Ciencias y Humanidades, Plantel Sur}
-\newcommand{\FC}{Facultad de Ciencias}
-\newcommand{\DGTIC}{Direcci\'on General de C\'omputo y Tecnolog\'ias de la
-  Informaci\'on}
+% Setting the font I want:
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sqrcaps}
+
+% Making the \entry command
 \newcommand{\entry}[4]{
-  
-  \begin{minipage}[t]{.15\textwidth}
+  \ifthenelse{\isempty{#3}}
+             {\slimentry{#1}{#2}}{
+               \begin{minipage}[t]{.15\linewidth}
+                 \hfill \textsc{#1}
+               \end{minipage}
+               \hfill\vline\hfill
+               \begin{minipage}[t]{.80\linewidth}
+                 {\bf#2}\\\textit{#3} \footnotesize{#4}
+               \end{minipage}\\
+               \vspace{.2cm}
+}}
+
+%% 1: place
+%% 2: degree
+%% 3: city
+%% 4: dateB
+%% 5: dateE
+%% 6: gpa
+\newcommand{\educationEntry}[6]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4 - #5} \tiny{GPA: #6}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=0mm]\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}}
+\newcommand{\resumeItemListStart}{\begin{justify}\begin{itemize}[leftmargin=3ex, rightmargin=2ex, noitemsep,labelsep=1.2mm,itemsep=0mm]\small}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=.5mm, rightmargin=2ex, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\end{justify}\vspace{-2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\personalProject}[6]{
+\vspace{-2pt}\item
+    \begin{tabular*}{1\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} #2 | #5 & \textit{\footnotesize{#3}}\\
+    \end{tabular*}\vspace{-3pt}
+    \begin{minipage}[t]{.7\textwidth}
+      \begin{spacing}{.3}
+        \textit{\small#6}
+      \end{spacing}
+    \end{minipage}
+    \begin{minipage}[t]{.3\textwidth}
+      \begin{spacing}{.3}
+        \hspace*{1.8in} \footnotesize{#4}
+      \end{spacing}
+    \end{minipage}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} {#2} & \textbf{\small #3} \\
+    \end{tabular*}\vspace{-3pt}
+    \begin{minipage}[t]{6in}
+      \begin{spacing}{.3}
+        \textit{\small#4}
+      \end{spacing}
+    \end{minipage}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{:\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\slimentry}[2]{
+  \begin{minipage}[t]{.15\linewidth}
     \hfill \textsc{#1}
   \end{minipage}
   \hfill\vline\hfill
-  \begin{minipage}[t]{.80\textwidth}
+  \begin{minipage}[t]{.80\linewidth}
     #2
-    \textit{#3}
-    \footnotesize{#4}
-  \end{minipage}\\\vspace{.25cm}
-}
+  \end{minipage}\\
+  \vspace{.25cm}
+}% end \entry command definition
 
-\newcommand{\newsubsection}[1]{
-  \textbf{#1}
-}
+% Some macros because I'm lazy:
+\newcommand{\unam}{\textbf{Universidad Nacional Autónoma de México}}
+\newcommand{\fc}{\textbf{Faculty of Science}}
+\newcommand{\mx}{Mexico City, Mexico}
+\newcommand{\dgtic}{\textbf{Dirección General de Tecnologías de la Información y Cómputo }}
+\newcommand{\iimas}{\textbf{Instituto de Investigaciones en Matemáticas Aplicadas y Sistemas }}
+
+\let\lineheight\baselineskip
+
+% Custom section spacing and formatting
+\titleformat{\part}{\Huge\scshape\filcenter}{}{0em}{}
+\titleformat{\section}{\Large\raggedright}{}{1em}{}[{\titlerule[.5pt]}]
+\titlespacing{\section}{0pt}{3pt}{2pt}
+\titleformat{\subsection}{\large\bfseries\centering}{}{0em}{\underline}%[\rule{3cm}{.2pt}]
+\titlespacing{\subsection}{0pt}{7pt}{7pt}
+
+% No indentation
+\setlength{\parindent}{0in}
 
 \begin{document}
 
-\title{CV}
-\author{Emiliano Galeana Araujo}
-\date{\today}
-
 \maketitle
 
-\section{Informaci\'on B\'asica}
+\section{Career Summary}
+Software engineer with 2.5 years of experience mostly in back-end development with python. I have knowledge in other languages such as Java, Javascript and any with access to the documentation. I have experience on the best coding practices (unit tests, git repositories) agile methodologies, object oriented paradigm and functional programming and relational databases.
 
-\subsubsection{email} galeanaara@ciencias.unam.mx
+\section{Education}
+\educationEntry{\fc, \unam}
+               {Bachelor of Science in Computer Science}
+               {\mx}
+               {Aug. 2016}
+               {Jun. 2020}
+               {3.7}
 
-\subsubsection{tel\'efono} 5531407750
+\educationEntry{\fc, \unam}
+               {Bachelor of Science in Mathematics (second bachelor's degree)}
+               {\mx}
+               {Jun. 2020}
+               {Graduated in May 2025}
+               {3.5}
 
-\subsubsection{gitHub} mildewyPrawn
+\section{Experience}
+\resumeSubHeadingListStart
 
-\section{Formaci\'on Acad\'emica}
+\resumeProject {Centro Geo} %Project Name
+               {Full-stack Developer} %Project Name, Location Name
+               {Jan. 2022 - Present} %Event Dates
+               {Mérida, Yucatán} %Website %% {\href{Link to project}{Drive}} %Website
+               \resumeItemListStart
+             \item {Create web aplication for automate the process of generate a professional ID.}
+             \item {Create and modify databases for improve query performance. Also create queries with postgis for geospatial data.}
+             \item {Create API with geospatial data collected from web pages using a web scrapper.}
+             \item {Automate processes using bash scripts.}
+             \item {Creation of user manuals and documentation.}
+             \item {Use of rust in certain projects for access APIs and clean data.}
+               \resumeItemListEnd
 
-\subsection{Con grado}
-\entry{2014--2016}
-{}
-{\CCH}
-{}
+\resumeProject {TCS} %Project Name
+               {Software Developer} %Project Name, Location Name
+               {Sep. 2022 - Jan 2023} %Event Dates
+               {Guadalajara, Jalisco} %Website %% {\href{Link to project}{Drive}} %Website
+               \resumeItemListStart
+             \item {Java database integration with JDBC.}
+             \item {Maintain and resolving issues of the existing project.}
+             \item {SQL: Data reporting and Analysis.}
+             \item {Training in Java Essential Trainning in Objects and API's}
+               \resumeItemListEnd
 
-\entry{2016--A la fecha}
-{Licenciatura en Ciencias de la Computación.}
-{\FC, \UNAM}
-{}
+\resumeProject {Honeywell} %Project Name
+               {Road to Intern Fair} %Project Name, Location Name
+               {Jun. 2021 - Jan. 2022} %Event Dates
+               {San Luis Potosí, San Luis Potosí} %Website
+               \resumeItemListStart
+             \item {Created documentation of the services used in software products.}
+             \item {Build a system for tracking servers, in order to apply updates automatically.}
+             \item {Automated process for report of failures.}
+               \resumeItemListEnd
 
-\subsection{Sin grado}
-\entry{2017}
-{Curso Sistemas Operativo Tipo UNIX}
-{\DGTIC en la \UNAM}
-{}
+\resumeSubHeadingListEnd
 
-\entry{2018}
-{Curso Introducci\'on al Diseño de Bases de Datos Relacionales}
-{\DGTIC, \UNAM}
-{}
+\section{Classes Taught}
+I've been teacher assistant of theory and laboratory at the Faculty of Science at \unam of the following courses:
+\vspace{-2.4mm}
+\begin{multicols}{2}
+  \begin{itemize}[leftmargin=*,itemsep=.5mm, rightmargin=2ex]
+  \item Computer Arquitecture and Organization (2020-2)
+  \item Data Structures (2020-4, 2023-2, 2024-2)
+  \item Discrete Mathematics (2021-1, 2022-1, 2023-1, 2024-1)
+  \item Distributed Computing (2022-2)
+  \item Introduction to Computer Science (2024-1)
+  \item Learn Java for the great of all (2020-1, 2022-1, 2024-1)
+  \item Logic for Computer Science (2021-2, 2022-2, 2023-1)
+  \item Programming Languages (2021-1, 2022-1)
+  \item Propaedeutic Course for first-year college of Computer Science (2020-1, 2021-1, 2022-1, 2023-1, 2024-1)
+  \end{itemize}
+
+\end{multicols}
+
+\section{Personal and Scholar Projects}
+\resumeSubHeadingListStart
+
+\personalProject {Thesis project} %Project Name
+                 {Voronoi Diagrams of Moving Points in the Plane} %Project Name, Location Name
+                 {In process} %Event Dates
+                 {github} %Website %% {\href{Link to project}{Drive}} %Website
+                 {Python, processing}
+                 {Programed the Delaunay Triangulation and the Voronoi Diagrams from the triangulation, also develop a system for moving points across the plane and with the coordenates and the two algorithms, I render the visualization with processing.}
+
+\personalProject {Home NAS} %Project Name
+                 {My own movie library} %Project Name, Location Name
+                 {Aug. 2022} %Event Dates
+                 {} %Website %% {\href{Link to project}{Drive}} %Website
+                 {Raspberry PI}
+                 {Set up a raspberry that allows me save movies, books, papers, music and photograps so that me and my family can access acreoss our home network.}
+
+\personalProject {Xmonad Modules} %Project Name
+                 {Battery Signal and Share Screen script} %Project Name, Location Name
+                 {May. 2021} %Event Dates
+                 {\href{}{gitLab}} %Website %% {\href{Link to project}{Drive}} %Website
+                 {Haskell}
+                 {Create scripts that allow me to connect my laptop when battery is running of and that let me share my screen as mirror or extend mi screen.}
+
+\personalProject {TimeStamp in emacs} %Project Name
+                 {} %Project Name, Location Name
+                 {Dec. 2021} %Event Dates
+                 {\href{https://gitlab.com/mildewyPrawn/timestamp}{gitLab}} %Website %% {\href{Link to project}{Drive}} %Website
+                 {emacs-lisp}
+                 {Create an emacs module for timestamp when sharing a screen.}
+
+\personalProject {The Camel Cup Game} %Project Name
+                 {} %Project Name, Location Name
+                 {Nov. 2021} %Event Dates
+                 {\href{}{gitLab}} %Website %% {\href{Link to project}{Drive}} %Website
+                 {java}
+                 {Develop the board game called Camel Cup, it allows multiple players (on the same computer) and tracks the players scores.}
+
+\personalProject {API for Customer-Product services} %Project Name
+                 {} %Project Name, Location Name
+                 {Nov. 2020} %Event Dates
+                 {} %Website %% {\href{Link to project}{Drive}} %Website
+                 {java, spring}
+                 {Implemented an API for post and get information about customers, producers and their products as a relation between them, it is scalable in the sense of the queries and the entities that can interact}
+
+\personalProject {Combinatorial optimization heuristics} %Project Name
+                 {Travelling Salesman Problem with Simulated annealing} %Project Name, Location Name
+                 {Jul. 2020} %Event Dates
+                 {\href{https://github.com/mildewyPrawn/Heuristicas/tree/master/TSP}{gitHub}} %Website %% {\href{Link to project}{Drive}} %Website
+                 {golang, transact-SQL}
+                 {Solve the TSP problem using the Simulated annealing heuristic. It uses a database of the most known airports in the world and. Given a list of places, it return one of the bests posible solutions that the heuristic can found.}
+
+\personalProject {Haskell Game} %Project Name
+                 {Guess the Movie with Emojis} %Project Name, Location Name
+                 {May. 2020} %Event Dates
+                 {\href{}{gitLab}} %Website %% {\href{Link to project}{Drive}} %Website
+                 {Haskell}
+                 {Implementation of the game: Guess the movie with emojis, using a set of movies with their respectively representation of emojis.}
+
+\personalProject {Data Structures and Computational Geometry Algorithms} %Project Name
+                 {} %Project Name, Location Name
+                 {Nov. 2019} %Event Dates
+                 {\href{https://github.com/mildewyPrawn/EDD}{gitHub}} %Website %% {\href{Link to project}{Drive}} %Website
+                 {Java, C++, golang, JUnit}
+                 {Develop a compilation of the most known data structures, like linked lists, trees (AVL, redblack), hash, sets. All with the basic operations as: insert, delete, search, with their respectively unit test. Also add some computational geometry algorithms such as sweep line, delaunay triangulation, voronoi diagrams and advanced data structures such as a DCEL.}
+
+\personalProject {Othello Game} %Project Name
+                 {Player vs. computer game using search algorithm for get the best move.} %Project Name, Location Name
+                 {May. 2019} %Event Dates
+                 {\href{https://github.com/mildewyPrawn/IA/tree/master/Gustavo/Proyecto2/ProyectoOthelloPy}{gitHub}}
+                 {Python, processing}
+                 {Using AI search algorithms and a map from the board to a matrix I programmed an IA that can play Othello and it hardly ever loses. It can play with three levels of difficulty and it depends on the deep of the search of the algorithm.}
+
+%% thesis
+%% Home NAS
+%% Xmonad module
+%% timestamp in emacs
+%% camel cup game
+%% API for customer/product services
+%% music parser
+%% TSP
+%% Guess the movie with emojis
+%% Data structures and computational geometry
+%% othello game
+
+\resumeSubHeadingListEnd
+
+\section{Certifications and Extracurricular Courses}
+\educationEntry{Rust: First steps}
+               {Course at Microsoft Learn}
+               {\mx}
+               {2023}
+               {}
+               {}
+
+\educationEntry{\iimas at UNAM}
+               {Relational Databases}
+               {\mx}
+               {2019}
+               {}
+               {}
+
+\educationEntry{\dgtic at UNAM}
+               {Linux System administration.}
+               {\mx}
+               {2017}
+               {}
+               {}
+
+\educationEntry{Contestant at the ACM ICPC.}
+               {Honorable mention at the ACM ICPC.}
+               {\mx}
+               {2019}
+               {2022}
+               {}
+
+\educationEntry{Best Project Idea for IBM challenge}
+               {Winner of IBM challenge at UNAMxHacks}
+               {\mx}
+               {2019}
+               {}
+               {}
+
+\educationEntry{Final of the national CTF(Capture The Flag).}
+               {}
+               {\mx}
+               {2019}
+               {}
+               {}
+
+\educationEntry{Contestant at the international olympic of logic.}
+               {Honorable mention at the international olympic of logic.}
+               {León, Guanajuato}
+               {2018}
+               {}
+               {}
+
+\section{Publications and Talks}
+\resumeSubHeadingListStart
+\resumeSubheading{Bachelor's Thesis}
+                 {Voronoi Diagrams of Moving Points in the Plane}
+                 {In process}
+                 {The Voronoi Diagrams can find the closest site of a set to a specific point, the objective of the work is to find the closest site but when a subset of sites are moving across the plane.}
+
+\resumeSubheading{Compilers Talk}
+                 {Monadic Parser Combinators; Case of Study for Parsec and BBAE Language}
+                 {Nov. 2023}
+                 {Talk about monads in the context of syntactic analysis, taking care of a Haskell introduction, monads (with examples), and the study case of a language defined to the talk called BBAE that stands for (only Binary Boolean Arithmetic Expressions).}
+
+\resumeSubheading{Consensus Problems Talks}
+                 {Discuss protocols of consensus for synchronous systems.}
+                 {Dic. 2022}
+                 {Talk about the $k-$agrement, aproximate agreement and commit distributed problem. Discuss about the problems, and the result of halting issues.}
+
+\resumeSubheading{Propedéutico para Ciencias de la Computación}
+                 {Manual del propedéutico para Ciencias de la Computación}
+                 {Since. Aug. 2020}
+                 {An event for future first-year college students of Computer Science, create and update topics and give them talks about initiation in Computer Science.}
+
+\resumeSubheading{Symposium of Advanced Data Structures}
+                 {Fibonacci Heaps History and Application in Improved Network}
+                 {Nov. 2019}
+                 {Talk about the fibonacci heaps, and introductory talk, discuss variants of fibonacci heaps and open problems also results in problems that use heaps and fibonacci heaps.}
+
+\resumeSubheading{Beca PAPIME 102117}
+                 {Solucionario para el curso de Lenguajes de Programación}
+                 {May. 2019}
+                 {Create a solution book of problems given in the Programming Languages course, including exams, haskell practices and class problems.}
+
+\resumeSubheading{El Encuentro del Mañana, \unam}
+                 {}
+                 {Since. Apr. 2019}
+                 {I have been giving talks about my experience as a Computer Science and mathematics student and solving questions about the majors.}
 
 
-\section{Experiencia Profesional}
+\resumeSubHeadingListEnd
 
-\subsection{\UNAM}
+\section{Areas of Interest}
+\vspace{-2.4mm}
+\begin{multicols}{2}
+  \begin{itemize}[leftmargin=*,itemsep=.5mm, rightmargin=2ex]
+  \item Computability Theory.
+  \item Algorithms and Data Structures.
+  \item Competitive Programming.
+  \item Computational Geometry.
+  \item Programming Languages Theory.
+  \item Distributed Computing.
+  \item Logic (Applications of Modal/Multimodal Logic).
+  \item Compiler Design.
+  \item Functional Programming.
+  \item Philosophy/Foundations Of Mathematics.
+  \item Teaching.
+  \end{itemize}
+\end{multicols}
+\vspace{-3mm}
 
-\newsubsection{Enseñanza}
-\entry{semestre 2019-4}
-{git, HTML, LaTeX}
-{\FC}
-{Ayud\'e a impartir el curso proped\'eutico para alumnos de nuevo ingreso a la
-  carrera de Ciencias de la Computación.}
+\section{Technical Skills}
 
-\entry{semestre 2019-1}
-{java}
-{\FC}
-{D\'i un curso a alumnos de primer semestre para ayudarlos a aprender java}
+\resumeHeadingSkillStart
+  \resumeSubItem{Programming}
+                {Java (6 yrs), Python (6 yrs), Haskell (6 yrs), Go (1 yr), JavaScript (1 yr), C/C++, SQL [postgres, MySQL], Racket, Lisp, elixir, markup languajes, shell, many others as needed.}
+  \resumeSubItem{Frameworks}
+                {Spring, Django, Flask, FastAPI, vue, react}
+  \resumeSubItem{Developer Tools}
+                {Git, Github, GitLab, bitBucket, emacs, Eclipse, \LaTeX, Eclipse, Netbeans, VirtualBox, VMWare, Packet Tracer, Processing.}
+  \resumeSubItem{Operating Systems}
+                {Linux (Ubuntu, Fedora, Debian, Arch)}
+  \resumeSubItem{Libraries}
+                {JUnit, Numpy, Pandas, MatplotLib}
+\resumeHeadingSkillEnd
 
-\newsubsection{Programa de Becas}
-\entry{semestre 2019-1}
-{UNAM-PAPIME102117}
-{\FC}
-{Disen\'e un solucionario del curso de Lenguajes de Programaci\'on impartido por
-el Dr. Favio E. Miranda Perea}
-
-\section{Habilidades}
-
-\subsection{Workflow}
-emacs, git, linux(Ubuntu, Fedora, Debian, Arch), \LaTeX.
-
-\subsection{Lenguages}
-
-\entry{He trabajado en}
-{java, haskell, python, C, C++, shell, HTML, \LaTeX, SQL}
-{}{}
-
-\entry{Con conocimientos en}
-{Go, Lisp, markdown, R, Mathlab, perl, pascal, prolog, javascript, assembly}
-{}{}
-
-\section{Habilidades Generales}
-
-\newsubsection{Idiomas}
-
-\entry{Español}{Como lengua materna.}{}{}
-\entry{Inglés}{Estudiando desde los 4 años.}{}{}
-\entry{Francés}{Estudi\'e 2 años en \CCH.}{}{}
-
-\section{Servicio y Otros}
-
-\subsection{Servicio Social}
-
-\newsubsection{Centro Geo}
-\entry{2019}{API}{En equipo creamos un API de consulta de datos geográficos.}{}
-\entry{2019}{Optimización}{En equipo optimizamos algunos programas que se
-  tenían.}{}
-\entry{2019}{Deep learning}{En equipo hicimos entrenamos un modelo para con
-  im\'agenes satelitales identifique el tipo de geometr\'a de los techos en la
-  ciudad.}{}
-
-\subsection{Otros}
-\entry{semestre 2018-2}{Final de la Olimpiada Internacional de Lógica.}{}{}
-
+\section{Languages}
+\resumeHeadingSkillStart
+  \resumeSubItem{Spanish}
+                {Native}
+\resumeSubItem{English}
+              {Business Conversational}
+ \resumeHeadingSkillEnd
 
 \end{document}

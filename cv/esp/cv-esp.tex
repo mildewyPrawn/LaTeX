@@ -1,0 +1,262 @@
+\documentclass[10pt,A4]{article}	
+
+\usepackage[T1]{fontenc}
+\usepackage[a4paper]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{calc}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+\usepackage{moresize}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{setspace}
+
+%% for example, change the margins to 2 inches all round
+\geometry{top=2cm, bottom=2cm, left=0.5cm, right=0.5cm} 	
+%% use customized header
+\pagestyle{fancy}
+%% less space between header and content
+\setlength{\headheight}{0pt}
+%% customize header entries
+\lhead{}
+\rhead{}
+\chead{}
+%indentation is zero
+\setlength{\parindent}{0mm}
+% for drawing graphics and charts
+\usetikzlibrary{shapes, backgrounds}
+
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+  \setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+\newcommand{\icon}[2]{\colorbox{black}{\makebox(#2, #2){\textcolor{white}{\large\csname fa#1\endcsname}}}}	%icon shortcut
+\newcommand{\icontext}[3]{ 						%icon with text shortcut
+  \vcenteredhbox{\icon{#1}{#2}}\hspace{0.2cm}\vcenteredhbox{\textcolor{black}{#3}}
+}
+
+\titlespacing{\section}{1cm}{1cm}{.12cm}
+\titlespacing{\subsection}{1cm}{1cm}{.01cm}
+
+
+%----------------------------------------------------------------------------------------
+% 	HEADER
+%----------------------------------------------------------------------------------------
+% remove top header line
+\renewcommand{\headrulewidth}{0pt}
+%remove botttom header line
+\renewcommand{\footrulewidth}{0pt}
+%remove pagenum
+\renewcommand{\thepage}{}
+%remove section num
+\renewcommand{\thesection}{}
+%% family font
+\renewcommand*\familydefault{\sfdefault}
+
+%----------------------------------------------------------------------------------------
+%	custom sections
+%----------------------------------------------------------------------------------------
+\titleformat{\section}
+{\large\bfseries\uppercase}
+{}
+{0em}
+{}
+{}
+
+\titleformat{\subsection}
+{\bfseries\Large}
+{\hspace{-.75cm}}
+{0em}
+{}
+{}
+
+%----------------------------------------------------------------------------------------
+% MY COMMANDS
+%----------------------------------------------------------------------------------------
+\newcommand{\entry}[4]{  
+  \begin{minipage}[t]{.15\textwidth}
+    \hfill \textsc{#1}\\
+  \end{minipage}
+  \hfill\vline\hfill
+  \begin{minipage}[t]{.80\textwidth}
+    #2\\
+    \onehalfspacing
+    \textit{#3}\\
+    \footnotesize{#4}
+  \end{minipage}\\
+}
+
+\newcommand{\UNAM}{\textit{UNAM}}
+\newcommand{\FC}{\textit{Facultad de Ciencias}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+  \begin{center}
+    \colorbox{black}{{\HUGE\textcolor{white}{\textbf{\MakeUppercase{Emiliano Galeana Araujo}}}}}
+  
+    \vspace{1mm}\Large{Ciencias de la computación y Matemáticas}
+  \end{center}
+
+\begin{minipage}[t]{0.50\textwidth}
+  \icontext{MapMarker}{10}{CDMX, Mexico}
+
+  \icontext{Phone}{10}{+52 5518474280}
+
+  \icontext{At}{8}{\href{mailto:galeanaara@ciencias.unam.mx}{galeanaara@ciencias.unam.mx}}
+\end{minipage}
+\begin{minipage}[t]{0.50\textwidth}
+  \icontext{Gitlab}{10}{\href{https://gitlab.com/mildewyPrawn}{gitlab.com/mildewyPrawn}}
+
+  \icontext{Github}{10}{\href{https://github.com/mildewyPrawn}{github.com/mildewyPrawn}}
+\end{minipage}%
+
+% manage space by reducing font size
+%----------------------------------------------------------------------------------------
+%	SKILLS AND TECHNOLOGIES
+%----------------------------------------------------------------------------------------
+\begin{minipage}[c]{0.55\linewidth}
+
+  \section{Experiencia laboral}
+\entry
+    {2020 - presente}
+    {\UNAM, \FC}
+    {Ayudante de laboratorio para cursos de la carrera de ciencias de la computación:}
+    {Propedéutico, Arquitectura de Computadoras, Estructuras de Datos, Estructuras Discretas, Lógica Computacional}
+
+\entry
+    {2020-2021}
+    {Conacyt, Centro Geo}
+    {Auxiliar de laboratorio en Laboratorio Nacional de
+      Geointeligencia. En equipo diseñamos un curso (Con ejercicios)
+      de python para personas de nuevo ingreso al laboratorio.}
+    {python, jupyter}
+    
+\entry
+    {Fall 2018}
+    {UNAM-PAPIME102117, \FC}
+    {Programa de becas. Diseñé y escribí un solucionario para el curso de lenguajes de
+      programación a cargo del Dr. Favio E. Miranda Perea}
+    {\LaTeX}
+
+\section{Proyectos}
+\entry
+    {2020}
+    {Parser de Música}
+    {Implementé en Haskell una especie de parser para música, toma
+      como input un archivo con notas musicales y produce sonido.}
+    {haskell, ffplay, git}
+      
+\entry
+    {2020}
+    {Heurística de Optimización para resolver TSP}
+    {Implementé el recorrido simulado para resolver el problema del
+      agente viajero (TSP). Tomando datos de las ciudades más
+      populares.}
+    {golang, sql, git}
+    
+\entry
+    {2019}
+    {Desarrollé una aplicación web para el registro de
+      eventos y asistentes.}
+    {Proyecto escolar. Lideré el desarrollo del
+      proyecto para la materia de Ingeniería de Software. Se realizó
+      (Además de la implementación), documentación, vistas, diagramas,
+      pruebas.}
+    {python, django, postgresql, git}
+    
+\entry
+    {2019}      
+    {Cierre Convexo/Barrido de línea}
+    {Implementé algoritmos para la materia de geometría
+      computacional.}
+    {java, c++, git}
+               
+\entry
+    {2019}
+    {Juego de Othello}
+    {Implementación de una inteligencia artificial que puede jugar
+      othello (Y ganar en la mayoría de los casos).}
+    {python, git, processing}
+
+\entry
+    {2020}
+    {cafeCiencias}
+    {Proyecto para la materia de riesgo tecnológico. Aplicación para
+      el registro y apartado de alimentos en la escuela. Contribuí a:
+      la implementación, documentación, vistas, pruebas, base de
+      datos.}
+    {python, django}
+
+\end{minipage}
+\begin{minipage}[c]{0.40\linewidth}
+
+\section{Educación}  
+\entry
+    {Desde 2017}
+    {Licenciatura en Ciencias de la computación.}
+    {\UNAM, \FC.}
+    {Promedio: 9.02}
+
+\entry
+    {Desde 2019}
+    {Licenciatura en Matemáticas.}
+    {\UNAM, \FC.}
+    {Promedio: 8.83}
+
+\section{Otros}
+\entry
+    {Desde 2019}
+    {Participante de la ACM ICPC.}
+    {Recibí mención honorífica.}
+    {C++}
+        
+\entry
+    {2019}
+    {Mejor idea para el desafío de IBM.}
+    {Ganador del desafío de IBM en el hackathon UNAMxHacks. Sistema
+      para clasificar curriculums.}
+    {python, cherrypy}
+
+\entry
+    {2018}
+    {Curso de Introducción al diseño de bases de datos relacionales.}
+    {DGTIC, \UNAM.}
+    {Microsoft Access}
+
+\entry
+    {2017}
+    {Curso de Introcucción a Sistemas Operativos tipo UNIX.}
+    {DGTIC, \UNAM.}
+    {linux (kali)}
+
+\section{Desarrollo}
+\begin{center}
+  \begin{tabular}{l c}
+    Java, python, haskell, git  & 4 años\\
+    golang, C/C++ & 2 años\\
+    lisp & 1 año\\
+  \end{tabular}
+\end{center}
+
+\section{Intereses}
+  Algoritmos, Geometría Computacional, Estructuras de Datos,
+  Inteligencia Artificial, Programación Declarativa.
+
+\section{Idiomas}
+  \begin{center}
+  \begin{tabular}{l l}
+  Español & Nativo\\
+  Inglés & B1\\
+  Francés & Básico\\
+  \end{tabular}
+\end{center}
+
+\end{minipage}
+\end{document}

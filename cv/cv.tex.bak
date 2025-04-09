@@ -1,0 +1,259 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{comment} %% coment section
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{titlesec} %% space between sections
+% Package for modifing how sections are viewed
+\usepackage{titlesec}
+% Package provides control over the typesetting of some commands
+\usepackage{titling}
+% Change things about margens
+%% \usepackage[margin=2.75cm]{geometry}
+%% \usepackage{geometry}
+\usepackage{multicol}
+\setlength{\columnsep}{3cm}
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=10mm,
+  top=10mm,
+  right=10mm,
+  bottom=10mm,
+}
+
+\titleformat{\section}
+{\large\bfseries\uppercase}
+{}
+{0em}
+{}[\titlerule]
+{}
+
+\titleformat{\subsection}
+{\bfseries\Large}
+{\hspace{-.75cm}$\bullet$}
+{0em}
+{}
+{}
+
+\titleformat{\subsubsection}[runin]
+{\bfseries}
+{}
+{0em}
+{}[---]
+{}
+
+\titlespacing{\subsubsection}
+             {0pt}
+             {5pt}
+             {5pt}
+
+\renewcommand{\maketitle}{
+  \begin{center}
+    {\huge\bfseries
+      \theauthor}
+    \vspace{.25em}\\
+\end{center}
+}
+
+\newcommand{\UNAM}{Universidad Nacional Aut\'onoma de M\'exico, }
+\newcommand{\FC}{Facultad de Ciencias}
+\newcommand{\entry}[4]{
+  \begin{minipage}[t]{.15\textwidth}
+    \hfill \textsc{#1}\\
+  \end{minipage}
+  \hfill\vline\hfill
+  \begin{minipage}[t]{.80\textwidth}
+    #2\\
+    \textit{#3}\\
+    \footnotesize{#4}
+  \end{minipage}
+}
+
+\newcommand{\SchoolProjects}[3]{
+  \begin{minipage}[t]{.15\textwidth}
+    \hfill \textsc{#1}\\
+  \end{minipage}
+  \hfill\vline\hfill
+  \begin{minipage}[t]{.80\textwidth}
+    #2\\
+    \textit{#3}
+  \end{minipage}
+}
+
+\newcommand{\TSkills}[3]{
+  \begin{minipage}[t]{.15\textwidth}
+    \textsc{#1}\\
+  \end{minipage}
+  \vline
+  \begin{minipage}[t]{.80\textwidth}
+    #2\\
+    \textit{#3}
+  \end{minipage}
+}
+
+\newcommand{\gh}
+           {
+             \includegraphics[scale=.05]{../imagenes/github.png}
+           }
+
+\newcommand{\email}
+           {
+             \includegraphics[scale=.07]{../imagenes/gmail.png}
+           }
+
+\newcommand{\phone}
+           {
+             \includegraphics[scale=.03]{../imagenes/phone.png}
+           }
+
+%% https://tex.stackexchange.com/questions/101116/how-to-reduce-the-space-before-after-section-and-subsection
+\titlespacing*{\section}{0pt}{*1.5}{*1.5}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\title{CV}
+\author{Emiliano Galeana Araujo}
+\date{\today}
+
+\maketitle
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ c  c  c}
+    \email : galeanaara@ciencias.unam.mx & \gh{} : mildewyPrawn & \phone +52 5518474280 \footnotemark\\
+  \end{tabular}
+\end{table}
+
+\begin{comment}
+\begin{minipage}[t]{.5\linewidth}
+  \begin{tabular}{r}
+    \hspace{2.4em}\email : galeanaara@ciencias.unam.mx
+  \end{tabular}
+\end{minipage}
+
+\begin{minipage}[t]{.5\linewidth}
+  \begin{tabular}{r}
+    \hspace{1.3em}\phone : +52 55 31407750
+  \end{tabular}
+\end{minipage}
+
+\begin{minipage}[t]{.5\linewidth}
+  \begin{tabular}{r}
+    \gh{} : mildewyPrawn
+  \end{tabular}
+\end{minipage}
+
+\end{comment}
+
+\begin{center}
+  Algorithms fan. Haskell enthusiast. Love learning new things and
+  solve problems.
+\end{center}
+
+\section{Education}
+\entry{2017--2022-May}
+      {Bachelor of Science in Computer Science}
+      {\UNAM\FC}
+      {GPA: 3.7}
+
+\section{Work Experience}
+\entry{February 2023 - Current}
+      {CentroGeo (Mérida)}
+      {Python and Javascript Developer}
+      {Using django  and postgres,  modify and  update the  database, create  controllers  for   access  de  information.   Automate process of signing and  sending information. Create unit tests for the project.   While using git create  branches for fixing features  and  merge  pairing   features  (such  as  views  or validators  for information).  Create  a login  system for  an admin (so  that only  he can sign  the information)  and other users only can see the information they have uploaded.  Create search queries by name, date, school, degree, etc.}
+
+\entry{September 2022 - January 2023}
+      {TCS}
+      {Java Developer}
+      {Java database integration with JDBC and Java Essential Training
+        in Objects and API's and SQL: Data Reporting and Analysis.}
+
+\entry{January 2022 - December 2022}
+      {CentroGeo}
+      {Python and Javascript developer}
+      {Using fastAPI,  postgres and flask  created a web  scrapper for downloading information, automate the scrapper and uploaded to a linux server so every  day it can download more information, the  information  is  added  to a  database  (the  sending  of information  is also  automated) in  other linux  server. Also create   views  and   endpoints  for   users  to   access  the information.  Create  documentation and  user manuals  for new users to understand the project.  Worked in a team of three in git (remote  work) so  needed to deal  with pull  requests and branches.}
+
+\entry{June 2021 - December 2021}
+      {Honeywell}
+      {IT Intern}
+      {Build in  python with flask as the main framework  a system for receive information from servers, access and track them for apply updates, automated the update process and inform about the servers that need to be updated manually.}
+
+\entry{2020 - present}
+      {\UNAM\FC}
+      {Laboratory assistant for courses of the Computer Sciences program Courses:}
+      {Computer Architecture, DataStructures, Programming Languages, Discrete Mathematics, Distributed Computing, teaching languages as java, C++, go, haskell and racket.}
+
+\section{Major Projects}
+\SchoolProjects{Fall 2023}
+               {Thesis project.}
+               {Compute the Voronoi Diagram of moving points in the plane, using processing as visual library and python, show the moves and structures of the moving points, for the algorithm I compute the delaunay triangulation in $O(nlong)$ and use it as a helper structure for Voronoi}
+
+\SchoolProjects{Fall 2022}
+               {The Camel Cup game.}
+               {The camel cup game is a board game, that I programmed java, it runs on the console and apply all the rules. I use some data structures for improve the moves and updating the scores of the players.}
+
+\SchoolProjects{Fall 2021}
+               {Develop an API for Customer/Product Services}
+               {Using Spring, implemented an API for post and get information about customers, producers and their products as a relation between them, it is scalable in the sense of the queries and the entities that can interact.}
+
+\SchoolProjects{Summer 2020}
+               {Music Parser}
+               {Using haskell, and music theory I compute a music parser to make sound from plain text, it takes the chords in the anglo-saxon format and with help of an external software (ffplay in linux), it plays the chords. The parser takes the notes and a tempo for create the waves (hertz and duration) and produces as output a file that ffplay can play}
+
+\SchoolProjects{Spring 2020}
+               {Guess the movie with emojis.}
+               {Implement the game using haskell  and a list of emojis from  gitHub.    It  runs   on  the   console,  using interactive inputs  and some tries before  lose, also it selects the emoji to guess randomly.}
+
+\SchoolProjects{Fall 2019}
+               {Data Structures and Computational Geometry}
+               {Implement a set of the most known datastructures in java (such as double linked lists, queues, staks, trees (AVL, red black trees, trie), hashmaps, sets)  and start to implement computational geometry algorithms, such as sweep line and the convex hull (in $O(nlogn)$), it was updated with the delaunay triangulation and voronoi diagram (computed from delaunay)}
+
+\section{Technical Skills}
+\begin{multicols}{2}
+\TSkills{5 years}
+        {Java/Haskell/Python}
+        {}
+
+\TSkills{3 years}
+        {C/C++}
+        {}
+
+\TSkills{1.5 years}
+        {Go/emacsLisp}
+        {}
+
+\TSkills{1 year}
+        {racket, elixir, javascript}
+        {}
+\end{multicols}
+
+\section{Workflow}
+JUnit,  \LaTeX, django,  emacs, fastAPI,  flask, git  (gitHub, gitLab,
+magit), linux(Ubuntu, Fedora, Debian, Arch).
+
+\section{Awards and Leadership}
+\TSkills{2019 - present}
+        {Contestant at the ACM ICPC.}
+        {Honorable mention at the ACM ICPC.}
+
+\TSkills{2019}
+        {Best Project Idea for IBM challenge}
+        {Winner of IBM challenge at UNAMxHacks}
+
+\TSkills{2019}
+        {Final of the national CTF(Capture The Flag).}
+        {}
+
+\TSkills{2018}
+        {Contestant at the international olympic of logic.}
+        {Honorable mention at the international olympic of logic.}
+
+%% https://tex.stackexchange.com/questions/262450/the-footnote-does-not-appear-at-all
+\footnotetext{\textsuperscript{}Just for calls.}
+
+\end{document}
